@@ -11,22 +11,27 @@
 </head>
 <body>
   <header>
-    <nav class="nav container" aria-label="Barre de navigation">
-      <a href="index.html" class="logo" aria-label="Team Objectif Up">
-        <span class="logo-text">Team Objectif Up</span>
-      </a>
+   <nav class="nav container" aria-label="Barre de navigation">
+  <!-- Logo principal texte -->
+  <a href="index.html" class="logo" aria-label="Team Objectif Up">
+    <span class="logo-text">Team Objectif Up</span>
+  </a>
 
-      <button class="menu-toggle" aria-expanded="false" aria-label="Ouvrir le menu">☰</button>
+  <!-- Petit logo en haut à droite -->
+  <div class="nav-small-logo">
+    <img src="Images/logo-Team-Objectif-Up.png" alt="Logo Team Objectif Up">
+  </div>
 
-      <ul class="nav-links" role="menubar">
-        <li role="none"><a role="menuitem" href="index.html">Accueil</a></li>
-        <li role="none"><a role="menuitem" href="planning.html" class="active">Plannings</a></li>
-        <li role="none"><a role="menuitem" href="about.html">Qui sommes-nous</a></li>
-        <li role="none"><a role="menuitem" href="legal.html">Mentions légales</a></li>
-      </ul>
-    </nav>
+  <button class="menu-toggle" aria-expanded="false" aria-label="Ouvrir le menu">☰</button>
+
+  <ul class="nav-links" role="menubar">
+    <li role="none"><a role="menuitem" href="index.html" >Accueil</a></li>
+    <li role="none"><a role="menuitem" href="planning.html" class="active">Plannings</a></li>
+    <li role="none"><a role="menuitem" href="about.html">Qui sommes-nous</a></li>
+    <li role="none"><a role="menuitem" href="legal.html">Mentions légales</a></li>
+  </ul>
+</nav>
   </header>
-
   <main>
     <section class="simulator">
       <h1>Simulateur de Planning</h1>
@@ -65,108 +70,145 @@
     </section>
   </main>
 
-<!-- Popup -->
-<div id="streak-popup" class="popup">
-  <div class="popup-content">
-    <span class="popup-close">&times;</span>
-    <p>Tu es à <span id="streak-popup-count">0</span> jours de suite !</p>
-    <p>🔥 Partage ta réussite et mentionne <b>@team_objectif_up_by_nat</b> 🚀</p>
-<button id="copy-text" class="popup-btn">Copier le texte</button>
-
-    <button id="share-instagram" class="popup-btn">Partager sur Instagram</button>
-  </div>
-</div>
-
-<div id="streak-display" class="streak-box">🔥 0 jours</div>
-
-<footer class="footer">
-  <div class="footer-container">
-    <!-- Logo / Nom -->
-    <div class="footer-logo">
-      <h2>TEAM Objectif Up</h2>
-      <p>Ton allié pour la productivité</p>
-    </div>
-
-    <!-- Liens réseaux -->
-    <div class="footer-socials">
-      <a href="https://www.instagram.com/team_objectif_up_by_nat/" target="_blank" aria-label="Instagram">
-        <i class="fab fa-instagram"></i>
-      </a>
-      <a href="https://www.tiktok.com/@team_objectif_up_by_nat" target="_blank" aria-label="TikTok">
-        <i class="fab fa-tiktok"></i>
-      </a>
-    </div>
-
-    <!-- Contact -->
-    <div class="footer-contact">
-      <p>📩 <a href="mailto:objectifuppartage@gmail.com">objectifuppartage@gmail.com</a></p>
+  <!-- Popup Winstreak -->
+  <div id="streak-popup" class="popup">
+    <div class="popup-content">
+      <span class="popup-close">&times;</span>
+      <p>Tu es à <span id="streak-popup-count">0</span> jours de suite !</p>
+      <p>🔥 Partage ta réussite et mentionne <b>@team_objectif_up_by_nat</b> 🚀</p>
+      <button id="copy-text" class="popup-btn">Copier le texte</button>
+      <button id="share-instagram" class="popup-btn">Partager sur Instagram</button>
     </div>
   </div>
 
-  <div class="footer-bottom">
-    <p>&copy; 2025 TEAM Objectif Up — Tous droits réservés</p>
+  <div id="streak-display" class="streak-box">🔥 0 jours</div>
+
+  <!-- Bouton aide "?" -->
+  <button id="help-btn" class="help-btn">?</button>
+
+  <!-- Popup d’explication -->
+  <div id="help-popup" class="popup">
+    <div class="popup-content">
+      <span class="popup-close">&times;</span>
+      <h2>Comment fonctionne ton planning ?</h2>
+      <ul>
+        <li>🕒 Choisis ton <b>heure de début</b> et le <b>nombre d’heures dispo</b>.</li>
+        <li>📚 Ajoute tes <b>tâches</b> (exos, cours, DM, évaluations…)</li>
+        <li>⚡ Choisis la <b>méthode</b> :
+          <ul>
+            <li><b>Pomodoro</b> : 40 min de travail → 5 min de pause</li>
+            <li><b>Deep Work</b> : 80 min de travail → 10 min de pause</li>
+          </ul>
+        </li>
+        <li>🔥 Chaque jour où tu génères un planning, ta <b>winstreak</b> augmente.</li>
+        <li>🏆 Mentionne <b>@team_objectif_up_by_nat</b> sur Insta → tu peux apparaître dans le <b>classement hebdo</b> qu’on publie !</li>
+      </ul>
+    </div>
   </div>
-</footer>
 
-<!-- Font Awesome (icônes) -->
-<script src="https://kit.fontawesome.com/yourkitid.js" crossorigin="anonymous"></script>
+  <footer class="footer">
+    <div class="footer-container">
+      <!-- Logo / Nom -->
+      <div class="footer-logo">
+        <h2>TEAM Objectif Up</h2>
+        <p>Ton allié pour la productivité</p>
+      </div>
 
+      <!-- Liens réseaux -->
+      <div class="footer-socials">
+        <a href="https://www.instagram.com/team_objectif_up_by_nat/" target="_blank" aria-label="Instagram">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <a href="https://www.tiktok.com/@team_objectif_up_by_nat" target="_blank" aria-label="TikTok">
+          <i class="fab fa-tiktok"></i>
+        </a>
+      </div>
+
+      <!-- Contact -->
+      <div class="footer-contact">
+        <p>📩 <a href="mailto:objectifuppartage@gmail.com">objectifuppartage@gmail.com</a></p>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2025 TEAM Objectif Up — Tous droits réservés</p>
+    </div>
+  </footer>
+
+  <!-- Font Awesome (icônes) -->
+  <script src="https://kit.fontawesome.com/yourkitid.js" crossorigin="anonymous"></script>
+
+  <!-- Script popup aide -->
+  <script>
+    const helpBtn = document.getElementById("help-btn");
+    const helpPopup = document.getElementById("help-popup");
+
+    helpBtn.addEventListener("click", () => {
+      helpPopup.style.display = "flex";
+    });
+
+    helpPopup.querySelector(".popup-close").addEventListener("click", () => {
+      helpPopup.style.display = "none";
+    });
+
+    helpPopup.addEventListener("click", (e) => {
+      if (e.target.id === "help-popup") helpPopup.style.display = "none";
+    });
+  </script>
 
   <script>
-    (function(){
-      const menuBtn = document.querySelector('.menu-toggle');
-      const navLinks = document.querySelector('.nav-links');
-      const navLinkItems = document.querySelectorAll('.nav-links a');
+  (function(){
+    const menuBtn = document.querySelector('.menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+    const navLinkItems = document.querySelectorAll('.nav-links a');
 
-      if(menuBtn && navLinks){
-        menuBtn.addEventListener('click', (e) => {
-          e.stopPropagation();
-          const open = navLinks.classList.toggle('open');
-          menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
-          menuBtn.innerText = open ? '✕' : '☰';
-        });
-      }
-
-      if(navLinkItems && navLinks){
-        navLinkItems.forEach(a => {
-          a.addEventListener('click', () => {
-            if(navLinks.classList.contains('open')){
-              navLinks.classList.remove('open');
-              if(menuBtn){
-                menuBtn.setAttribute('aria-expanded', 'false');
-                menuBtn.innerText = '☰';
-              }
-            }
-          });
-        });
-      }
-
-      document.addEventListener('click', (e) => {
-        if(!navLinks || !menuBtn) return;
-        if(navLinks.classList.contains('open')){
-          const inside = navLinks.contains(e.target) || menuBtn.contains(e.target);
-          if(!inside){
-            navLinks.classList.remove('open');
-            menuBtn.setAttribute('aria-expanded','false');
-            menuBtn.innerText = '☰';
-          }
-        }
+    // Hamburger open/close
+    if(menuBtn && navLinks){
+      menuBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const open = navLinks.classList.toggle('open');
+        menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+        menuBtn.innerText = open ? '✕' : '☰';
       });
+    }
 
-      document.addEventListener('keydown', (e) => {
-        if(e.key === 'Escape' && navLinks && navLinks.classList.contains('open')){
+    // Fermer le menu quand on clique sur un lien
+    if(navLinkItems && navLinks){
+      navLinkItems.forEach(a => {
+        a.addEventListener('click', () => {
+          if(navLinks.classList.contains('open')){
+            navLinks.classList.remove('open');
+            if(menuBtn){
+              menuBtn.setAttribute('aria-expanded', 'false');
+              menuBtn.innerText = '☰';
+            }
+          }
+        });
+      });
+    }
+
+    // close menu on click outside
+    document.addEventListener('click', (e) => {
+      if(!navLinks || !menuBtn) return;
+      if(navLinks.classList.contains('open')){
+        const inside = navLinks.contains(e.target) || menuBtn.contains(e.target);
+        if(!inside){
           navLinks.classList.remove('open');
           menuBtn.setAttribute('aria-expanded','false');
           menuBtn.innerText = '☰';
         }
-      });
-    })();
+      }
+    });
 
-    if (diffDays === 1 || !lastDate) {
-  streak++;
-  showStreakPopup(streak); // Affiche le popup
-}
-
-  </script>
+    // close menu on Escape
+    document.addEventListener('keydown', (e) => {
+      if(e.key === 'Escape' && navLinks && navLinks.classList.contains('open')){
+        navLinks.classList.remove('open');
+        menuBtn.setAttribute('aria-expanded','false');
+        menuBtn.innerText = '☰';
+      }
+    });
+  })();
+</script>
 </body>
 </html>
