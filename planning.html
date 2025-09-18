@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Team Objectif Up - Simulateur</title>
+  <!-- Font Awesome CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+  <script defer src="script.js"></script>
+</head>
+<body>
+  <header>
+    <nav class="nav container" aria-label="Barre de navigation">
+      <a href="index.html" class="logo" aria-label="Team Objectif Up">
+        <span class="logo-text">Team Objectif Up</span>
+      </a>
+
+      <button class="menu-toggle" aria-expanded="false" aria-label="Ouvrir le menu">☰</button>
+
+      <ul class="nav-links" role="menubar">
+        <li role="none"><a role="menuitem" href="index.html">Accueil</a></li>
+        <li role="none"><a role="menuitem" href="planning.html" class="active">Plannings</a></li>
+        <li role="none"><a role="menuitem" href="about.html">Qui sommes-nous</a></li>
+        <li role="none"><a role="menuitem" href="legal.html">Mentions légales</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="simulator">
+      <h1>Simulateur de Planning</h1>
+
+      <form id="planning-form">
+        <div class="row">
+          <label for="startTime">Début :</label>
+          <input type="time" id="startTime" required>
+
+          <label for="hours">Heures dispo :</label>
+          <input type="number" id="hours" min="0.25" step="0.25" value="3">
+
+          <label for="mode">Méthode :</label>
+          <select id="mode">
+            <option value="pomodoro">Pomodoro</option>
+            <option value="deep">Deep Work</option>
+          </select>
+        </div>
+
+        <div class="tasks-area">
+          <h2>Tâches</h2>
+          <div id="tasksContainer"></div>
+          <button id="addTask" type="button" class="btn-secondary">+ Ajouter une tâche</button>
+          <button id="resetAll" type="button" class="btn-secondary">Tout supprimer</button>
+        </div>
+
+        <div class="controls">
+          <button id="generate" type="button" class="btn-primary">Générer mon planning</button>
+        </div>
+      </form>
+
+      <div id="planning-output" class="planning-output">
+        <h2>Planning généré</h2>
+        <div id="timeline" class="timeline"></div>
+      </div>
+    </section>
+  </main>
+
+<!-- Popup -->
+<div id="streak-popup" class="popup">
+  <div class="popup-content">
+    <span class="popup-close">&times;</span>
+    <p>Tu es à <span id="streak-popup-count">0</span> jours de suite !</p>
+    <p>🔥 Partage ta réussite et mentionne <b>@team_objectif_up_by_nat</b> 🚀</p>
+<button id="copy-text" class="popup-btn">Copier le texte</button>
+
+    <button id="share-instagram" class="popup-btn">Partager sur Instagram</button>
+  </div>
+</div>
+
+<div id="streak-display" class="streak-box">🔥 0 jours</div>
+
+<footer class="footer">
+  <div class="footer-container">
+    <!-- Logo / Nom -->
+    <div class="footer-logo">
+      <h2>TEAM Objectif Up</h2>
+      <p>Ton allié pour la productivité</p>
+    </div>
+
+    <!-- Liens réseaux -->
+    <div class="footer-socials">
+      <a href="https://www.instagram.com/team_objectif_up_by_nat/" target="_blank" aria-label="Instagram">
+        <i class="fab fa-instagram"></i>
+      </a>
+      <a href="https://www.tiktok.com/@team_objectif_up_by_nat" target="_blank" aria-label="TikTok">
+        <i class="fab fa-tiktok"></i>
+      </a>
+    </div>
+
+    <!-- Contact -->
+    <div class="footer-contact">
+      <p>📩 <a href="mailto:objectifuppartage@gmail.com">objectifuppartage@gmail.com</a></p>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>&copy; 2025 TEAM Objectif Up — Tous droits réservés</p>
+  </div>
+</footer>
+
+<!-- Font Awesome (icônes) -->
+<script src="https://kit.fontawesome.com/yourkitid.js" crossorigin="anonymous"></script>
+
+
+  <script>
+    (function(){
+      const menuBtn = document.querySelector('.menu-toggle');
+      const navLinks = document.querySelector('.nav-links');
+      const navLinkItems = document.querySelectorAll('.nav-links a');
+
+      if(menuBtn && navLinks){
+        menuBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const open = navLinks.classList.toggle('open');
+          menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+          menuBtn.innerText = open ? '✕' : '☰';
+        });
+      }
+
+      if(navLinkItems && navLinks){
+        navLinkItems.forEach(a => {
+          a.addEventListener('click', () => {
+            if(navLinks.classList.contains('open')){
+              navLinks.classList.remove('open');
+              if(menuBtn){
+                menuBtn.setAttribute('aria-expanded', 'false');
+                menuBtn.innerText = '☰';
+              }
+            }
+          });
+        });
+      }
+
+      document.addEventListener('click', (e) => {
+        if(!navLinks || !menuBtn) return;
+        if(navLinks.classList.contains('open')){
+          const inside = navLinks.contains(e.target) || menuBtn.contains(e.target);
+          if(!inside){
+            navLinks.classList.remove('open');
+            menuBtn.setAttribute('aria-expanded','false');
+            menuBtn.innerText = '☰';
+          }
+        }
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if(e.key === 'Escape' && navLinks && navLinks.classList.contains('open')){
+          navLinks.classList.remove('open');
+          menuBtn.setAttribute('aria-expanded','false');
+          menuBtn.innerText = '☰';
+        }
+      });
+    })();
+
+    if (diffDays === 1 || !lastDate) {
+  streak++;
+  showStreakPopup(streak); // Affiche le popup
+}
+
+  </script>
+</body>
+</html>
