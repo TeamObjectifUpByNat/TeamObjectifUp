@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Team Objectif Up - Simulateur</title>
-  <!-- Font Awesome CDN -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link rel="stylesheet" href="style.css">
   <script defer src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
@@ -13,27 +12,24 @@
 </head>
 <body>
   <header>
-   <nav class="nav container" aria-label="Barre de navigation">
-  <!-- Logo principal texte -->
-  <a href="index.html" class="logo" aria-label="Team Objectif Up">
-    <span class="logo-text">Team Objectif Up</span>
-  </a>
-
-  <!-- Petit logo en haut à droite -->
-  <div class="nav-small-logo">
-    <img src="Images/logo-Team-Objectif-Up.png" alt="Logo Team Objectif Up">
-  </div>
-
-  <button class="menu-toggle" aria-expanded="false" aria-label="Ouvrir le menu">☰</button>
-
-  <ul class="nav-links" role="menubar">
-    <li role="none"><a role="menuitem" href="index.html" >Accueil</a></li>
-    <li role="none"><a role="menuitem" href="planning.html" class="active">Plannings</a></li>
-    <li role="none"><a role="menuitem" href="about.html">Qui sommes-nous</a></li>
-    <li role="none"><a role="menuitem" href="legal.html">Mentions légales</a></li>
-  </ul>
-</nav>
+    <nav class="nav container" aria-label="Barre de navigation">
+      <a href="index.html" class="logo" aria-label="Team Objectif Up">
+        <span class="logo-text">Team Objectif Up</span>
+      </a>
+      <div class="nav-small-logo">
+        <img src="Images/logo-Team-Objectif-Up.png" alt="Logo Team Objectif Up">
+      </div>
+      <button class="menu-toggle" aria-expanded="false" aria-label="Ouvrir le menu">☰</button>
+      <ul class="nav-links" role="menubar">
+        <li role="none"><a role="menuitem" href="index.html">Accueil</a></li>
+        <li role="none"><a role="menuitem" href="planning.html" class="active">Plannings</a></li>
+        <li role="none"><a role="menuitem" href="about.html">Qui sommes-nous</a></li>
+        <li role="none"><a role="menuitem" href="legal.html">Mentions légales</a></li>
+        <li role="none"><a role="menuitem" href="apprendreàapprendre.html">Apprendre à apprendre</a></li>
+      </ul>
+    </nav>
   </header>
+
   <main>
     <section class="simulator">
       <h1>Simulateur de Planning</h1>
@@ -56,8 +52,13 @@
         <div class="tasks-area">
           <h2>Tâches</h2>
           <div id="tasksContainer"></div>
-          <button id="addTask" type="button" class="btn-secondary">+ Ajouter une tâche</button>
-          <button id="resetAll" type="button" class="btn-secondary">Tout supprimer</button>
+
+          <!-- Boutons de gestion des tâches -->
+          <div class="task-buttons">
+            <button id="addTask" type="button" class="btn-secondary">+ Ajouter une tâche</button>
+            <button id="addCustomTask" type="button" class="btn-secondary">+ Tâche personnalisée</button>
+            <button id="resetAll" type="button" class="btn-secondary">Tout supprimer</button>
+          </div>
         </div>
 
         <div class="controls">
@@ -85,10 +86,10 @@
 
   <div id="streak-display" class="streak-box">🔥 0 jours</div>
 
-  <!-- Bouton aide "?" -->
+  <!-- Bouton aide -->
   <button id="help-btn" class="help-btn">?</button>
 
-  <!-- Popup d’explication -->
+  <!-- Popup aide -->
   <div id="help-popup" class="popup">
     <div class="popup-content">
       <span class="popup-close">&times;</span>
@@ -103,114 +104,76 @@
           </ul>
         </li>
         <li>🔥 Chaque jour où tu génères un planning, ta <b>winstreak</b> augmente.</li>
-        <li>🏆 Mentionne <b>@team_objectif_up_by_nat</b> sur Insta → tu peux apparaître dans le <b>classement hebdo</b> qu’on publie !</li>
+        <li>🏆 Mentionne <b>@team_objectif_up_by_nat</b> sur Insta → tu peux apparaître dans le <b>classement hebdo</b> !</li>
       </ul>
     </div>
   </div>
 
   <footer class="footer">
     <div class="footer-container">
-      <!-- Logo / Nom -->
       <div class="footer-logo">
         <h2>TEAM Objectif Up</h2>
         <p>Ton allié pour la productivité</p>
       </div>
-
-      <!-- Liens réseaux -->
       <div class="footer-socials">
-        <a href="https://www.instagram.com/team_objectif_up_by_nat/" target="_blank" aria-label="Instagram">
-          <i class="fab fa-instagram"></i>
-        </a>
-        <a href="https://www.tiktok.com/@team_objectif_up_by_nat" target="_blank" aria-label="TikTok">
-          <i class="fab fa-tiktok"></i>
-        </a>
+        <a href="https://www.instagram.com/team_objectif_up_by_nat/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.tiktok.com/@team_objectif_up_by_nat" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
       </div>
-
-      <!-- Contact -->
       <div class="footer-contact">
         <p>📩 <a href="mailto:objectifuppartage@gmail.com">objectifuppartage@gmail.com</a></p>
       </div>
     </div>
-
     <div class="footer-bottom">
       <p>&copy; 2025 TEAM Objectif Up — Tous droits réservés</p>
     </div>
   </footer>
 
-  <!-- Font Awesome (icônes) -->
-  <script src="https://kit.fontawesome.com/yourkitid.js" crossorigin="anonymous"></script>
-
-  <!-- Script popup aide -->
   <script>
+    // Popup aide
     const helpBtn = document.getElementById("help-btn");
     const helpPopup = document.getElementById("help-popup");
+    helpBtn.addEventListener("click", () => helpPopup.style.display = "flex");
+    helpPopup.querySelector(".popup-close").addEventListener("click", () => helpPopup.style.display = "none");
+    helpPopup.addEventListener("click", (e) => { if (e.target.id === "help-popup") helpPopup.style.display = "none"; });
 
-    helpBtn.addEventListener("click", () => {
-      helpPopup.style.display = "flex";
-    });
-
-    helpPopup.querySelector(".popup-close").addEventListener("click", () => {
-      helpPopup.style.display = "none";
-    });
-
-    helpPopup.addEventListener("click", (e) => {
-      if (e.target.id === "help-popup") helpPopup.style.display = "none";
-    });
-  </script>
-
-  <script>
-  (function(){
-    const menuBtn = document.querySelector('.menu-toggle');
-    const navLinks = document.querySelector('.nav-links');
-    const navLinkItems = document.querySelectorAll('.nav-links a');
-
-    // Hamburger open/close
-    if(menuBtn && navLinks){
+    // Menu mobile
+    (function(){
+      const menuBtn = document.querySelector('.menu-toggle');
+      const navLinks = document.querySelector('.nav-links');
+      if(!menuBtn || !navLinks) return;
       menuBtn.addEventListener('click', (e) => {
         e.stopPropagation();
         const open = navLinks.classList.toggle('open');
-        menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+        menuBtn.setAttribute('aria-expanded', open);
         menuBtn.innerText = open ? '✕' : '☰';
       });
-    }
-
-    // Fermer le menu quand on clique sur un lien
-    if(navLinkItems && navLinks){
-      navLinkItems.forEach(a => {
-        a.addEventListener('click', () => {
-          if(navLinks.classList.contains('open')){
-            navLinks.classList.remove('open');
-            if(menuBtn){
-              menuBtn.setAttribute('aria-expanded', 'false');
-              menuBtn.innerText = '☰';
-            }
-          }
-        });
-      });
-    }
-
-    // close menu on click outside
-    document.addEventListener('click', (e) => {
-      if(!navLinks || !menuBtn) return;
-      if(navLinks.classList.contains('open')){
-        const inside = navLinks.contains(e.target) || menuBtn.contains(e.target);
-        if(!inside){
+      document.addEventListener('click', (e) => {
+        if (!navLinks.contains(e.target) && !menuBtn.contains(e.target)) {
           navLinks.classList.remove('open');
-          menuBtn.setAttribute('aria-expanded','false');
           menuBtn.innerText = '☰';
         }
-      }
-    });
+      });
+    })();
 
-    // close menu on Escape
-    document.addEventListener('keydown', (e) => {
-      if(e.key === 'Escape' && navLinks && navLinks.classList.contains('open')){
-        navLinks.classList.remove('open');
-        menuBtn.setAttribute('aria-expanded','false');
-        menuBtn.innerText = '☰';
-      }
+    // Ajout d'une tâche personnalisée
+    document.addEventListener("DOMContentLoaded", () => {
+      const addCustomTaskBtn = document.getElementById("addCustomTask");
+      const tasksContainer = document.getElementById("tasksContainer");
+
+      addCustomTaskBtn.addEventListener("click", () => {
+        const div = document.createElement("div");
+        div.className = "task custom-task";
+        div.innerHTML = `
+          <input type="text" class="task-name" placeholder="Nom de la tâche" required>
+          <input type="number" class="task-duration" min="0.25" step="0.25" placeholder="Minutes" required>
+          <button type="button" class="btn-remove">❌</button>
+        `;
+        tasksContainer.appendChild(div);
+
+        // Supprimer la tâche personnalisée
+        div.querySelector(".btn-remove").addEventListener("click", () => div.remove());
+      });
     });
-  })();
-</script>
+  </script>
 </body>
 </html>
